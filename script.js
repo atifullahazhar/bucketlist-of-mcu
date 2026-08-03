@@ -1,0 +1,234 @@
+
+// 👇 APNI OMDB API KEY YAHAN DAALO (Inverted commas ke andar)
+const OMDB_API_KEY = "ef1d0492"; 
+
+// MCU COMPLETE TIMELINE (Updated)
+const mcuData = [
+    {
+        phase: "Phase 1: The Infinity Saga",
+        items: [
+            { id: "iron-man-1", title: "Iron Man", year: "2008", type: "Movie", meta: "2h 6m", desc: "Billionaire industrialist Tony Stark builds a high-tech suit of armor." },
+            { id: "hulk-1", title: "The Incredible Hulk", year: "2008", type: "Movie", meta: "1h 52m", desc: "Bruce Banner seeks a cure for his unique condition while avoiding capture." },
+            { id: "iron-man-2", title: "Iron Man 2", year: "2010", type: "Movie", meta: "2h 4m", desc: "Tony Stark must contend with his declining health." },
+            { id: "thor-1", title: "Thor", year: "2011", type: "Movie", meta: "1h 55m", desc: "The powerful but arrogant god Thor is cast out of Asgard." },
+            { id: "cap-1", title: "Captain America: The First Avenger", year: "2011", type: "Movie", meta: "2h 4m", desc: "Steve Rogers transforms into Captain America." },
+            { id: "avengers-1", title: "The Avengers", year: "2012", type: "Movie", meta: "2h 23m", desc: "Earth's mightiest heroes must come together to stop the mischievous Loki." }
+        ]
+    },
+    {
+        phase: "Phase 2: The Infinity Saga",
+        items: [
+            { id: "iron-man-3", title: "Iron Man 3", year: "2013", type: "Movie", meta: "2h 10m", desc: "Tony Stark faces a formidable terrorist called the Mandarin." },
+            { id: "thor-2", title: "Thor: The Dark World", year: "2013", type: "Movie", meta: "1h 52m", desc: "Thor must embark on a perilous journey to stop the Dark Elves." },
+            { id: "cap-2", title: "Captain America: The Winter Soldier", year: "2014", type: "Movie", meta: "2h 16m", desc: "Steve Rogers battles a new threat: the Winter Soldier." },
+            { id: "gotg-1", title: "Guardians of the Galaxy", year: "2014", type: "Movie", meta: "2h 1m", desc: "A group of intergalactic criminals pull together to stop a fanatical warrior." },
+            { id: "avengers-2", title: "Avengers: Age of Ultron", year: "2015", type: "Movie", meta: "2h 21m", desc: "The Avengers must stop the villainous artificial intelligence, Ultron." },
+            { id: "ant-man-1", title: "Ant-Man", year: "2015", type: "Movie", meta: "1h 57m", desc: "Cat burglar Scott Lang uses a shrinking suit to become a hero." }
+        ]
+    },
+    {
+        phase: "Phase 3: The Infinity Saga",
+        items: [
+            { id: "cap-3", title: "Captain America: Civil War", year: "2016", type: "Movie", meta: "2h 27m", desc: "Political involvement causes a rift between Captain America and Iron Man." },
+            { id: "strange-1", title: "Doctor Strange", year: "2016", type: "Movie", meta: "1h 55m", desc: "A brilliant neurosurgeon is drawn into the world of the mystic arts." },
+            { id: "gotg-2", title: "Guardians of the Galaxy Vol. 2", year: "2017", type: "Movie", meta: "2h 16m", desc: "The Guardians struggle to keep together while exploring Star-Lord's parentage." },
+            { id: "spidey-1", title: "Spider-Man: Homecoming", year: "2017", type: "Movie", meta: "2h 13m", desc: "Peter Parker balances high school with his superhero alter-ego." },
+            { id: "thor-3", title: "Thor: Ragnarok", year: "2017", type: "Movie", meta: "2h 10m", desc: "Thor races against time to stop Hela and the destruction of Asgard." },
+            { id: "panther-1", title: "Black Panther", year: "2018", type: "Movie", meta: "2h 14m", desc: "T'Challa must step forward to lead his people and protect Wakanda." },
+            { id: "avengers-3", title: "Avengers: Infinity War", year: "2018", type: "Movie", meta: "2h 29m", desc: "The Avengers attempt to stop Thanos from collecting the Infinity Stones." },
+            { id: "ant-man-2", title: "Ant-Man and the Wasp", year: "2018", type: "Movie", meta: "1h 58m", desc: "Scott Lang and Hope van Dyne embark on an urgent new mission." },
+            { id: "marvel-1", title: "Captain Marvel", year: "2019", type: "Movie", meta: "2h 3m", desc: "Carol Danvers becomes one of the universe's most powerful heroes." },
+            { id: "avengers-4", title: "Avengers: Endgame", year: "2019", type: "Movie", meta: "3h 1m", desc: "The remaining Avengers assemble once more to reverse Thanos' actions." },
+            { id: "spidey-2", title: "Spider-Man: Far From Home", year: "2019", type: "Movie", meta: "2h 9m", desc: "Spider-Man takes on new threats during a school trip to Europe." }
+        ]
+    },
+    {
+        phase: "Phase 4: The Multiverse Saga",
+        items: [
+            { id: "wandavision", title: "WandaVision", year: "2021", type: "Series", meta: "9 Episodes", desc: "Wanda and Vision live idealized suburban lives." },
+            { id: "falcon-ws", title: "The Falcon and the Winter Soldier", year: "2021", type: "Series", meta: "6 Episodes", desc: "Sam Wilson and Bucky Barnes team up." },
+            { id: "loki-1", title: "Loki (Season 1)", year: "2021", type: "Series", meta: "6 Episodes", desc: "Loki is captured by the Time Variance Authority." },
+            { id: "widow-1", title: "Black Widow", year: "2021", type: "Movie", meta: "2h 14m", desc: "Natasha Romanoff confronts a dangerous conspiracy." },
+            { id: "whatif-1", title: "What If...? (Season 1)", year: "2021", type: "Series", meta: "9 Episodes", desc: "Exploring alternate realities within the multiverse." },
+            { id: "shang-chi", title: "Shang-Chi and the Legend of the Ten Rings", year: "2021", type: "Movie", meta: "2h 12m", desc: "Shang-Chi must confront the mysterious Ten Rings." },
+            { id: "eternals", title: "Eternals", year: "2021", type: "Movie", meta: "2h 36m", desc: "Immortal beings who shaped Earth's history emerge." },
+            { id: "hawkeye", title: "Hawkeye", year: "2021", type: "Series", meta: "6 Episodes", desc: "Clint Barton and Kate Bishop team up." },
+            { id: "spidey-3", title: "Spider-Man: No Way Home", year: "2021", type: "Movie", meta: "2h 28m", desc: "Peter Parker asks Doctor Strange for help." },
+            { id: "moon-knight", title: "Moon Knight", year: "2022", type: "Series", meta: "6 Episodes", desc: "Steven Grant discovers he shares a body with a mercenary." },
+            { id: "strange-2", title: "Doctor Strange in the Multiverse of Madness", year: "2022", type: "Movie", meta: "2h 6m", desc: "Doctor Strange travels across multiverses." },
+            { id: "ms-marvel", title: "Ms. Marvel", year: "2022", type: "Series", meta: "6 Episodes", desc: "Kamala Khan struggles to fit in until she gains her own powers." },
+            { id: "thor-4", title: "Thor: Love and Thunder", year: "2022", type: "Movie", meta: "1h 59m", desc: "Thor fights Gorr the God Butcher." },
+            { id: "groot-1", title: "I Am Groot", year: "2022", type: "Shorts", meta: "10 Episodes", desc: "A series of shorts featuring Baby Groot." },
+            { id: "she-hulk", title: "She-Hulk: Attorney at Law", year: "2022", type: "Series", meta: "9 Episodes", desc: "Jennifer Walters navigates life as a lawyer." },
+            { id: "werewolf", title: "Werewolf by Night", year: "2022", type: "Special", meta: "52m", desc: "A secret cabal of monster hunters gather." },
+            { id: "panther-2", title: "Black Panther: Wakanda Forever", year: "2022", type: "Movie", meta: "2h 41m", desc: "Wakanda fights to protect their home." },
+            { id: "gotg-holiday", title: "The Guardians of the Galaxy Holiday Special", year: "2022", type: "Special", meta: "42m", desc: "The Guardians engage in spirited hijinks." }
+        ]
+    },
+    {
+        phase: "Phase 5: The Multiverse Saga",
+        items: [
+            { id: "ant-man-3", title: "Ant-Man and the Wasp: Quantumania", year: "2023", type: "Movie", meta: "2h 4m", desc: "Scott and Hope explore the Quantum Realm." },
+            { id: "gotg-3", title: "Guardians of the Galaxy Vol. 3", year: "2023", type: "Movie", meta: "2h 30m", desc: "Peter Quill rallies his team." },
+            { id: "secret-invasion", title: "Secret Invasion", year: "2023", type: "Series", meta: "6 Episodes", desc: "Nick Fury uncovers a conspiracy." },
+            { id: "loki-2", title: "Loki (Season 2)", year: "2023", type: "Series", meta: "6 Episodes", desc: "Loki tries to save the collapsing multiverse." },
+            { id: "marvels", title: "The Marvels", year: "2023", type: "Movie", meta: "1h 45m", desc: "Carol, Kamala, and Monica are forced to work together." },
+            { id: "whatif-2", title: "What If...? (Season 2)", year: "2023", type: "Series", meta: "9 Episodes", desc: "The Watcher continues to explore the multiverse." },
+            { id: "echo", title: "Echo", year: "2024", type: "Series", meta: "5 Episodes", desc: "Maya Lopez reconnects with her roots." },
+            { id: "deadpool-3", title: "Deadpool & Wolverine", year: "2024", type: "Movie", meta: "2h 7m", desc: "Deadpool teams up with Wolverine to save his universe." },
+            { id: "agatha", title: "Agatha All Along", year: "2024", type: "Series", meta: "9 Episodes", desc: "Agatha Harkness embarks on a dangerous quest." },
+            { id: "whatif-3", title: "What If...? (Season 3)", year: "2024", type: "Series", meta: "Upcoming", desc: "The final chapter of the animated anthology series." },
+            { id: "cap-4", title: "Captain America: Brave New World", year: "2025", type: "Movie", meta: "Upcoming", desc: "Sam Wilson embraces his new role amid a global crisis." },
+            { id: "daredevil-ba", title: "Daredevil: Born Again", year: "2025", type: "Series", meta: "Upcoming", desc: "Matt Murdock and Wilson Fisk cross paths once again." },
+            { id: "thunderbolts", title: "Thunderbolts*", year: "2025", type: "Movie", meta: "Upcoming", desc: "A team of antiheroes goes on dangerous missions." },
+            { id: "ironheart", title: "Ironheart", year: "2025", type: "Series", meta: "Upcoming", desc: "Riri Williams builds the most advanced armor since Iron Man." }
+        ]
+    },
+    {
+        phase: "Phase 6: The Multiverse Saga",
+        items: [
+            { id: "ff-1", title: "The Fantastic Four: First Steps", year: "2025", type: "Movie", meta: "Upcoming", desc: "Marvel's First Family officially enters the MCU in a retro-futuristic world." },
+            { id: "eyes-of-wakanda", title: "Eyes of Wakanda", year: "2025", type: "Series", meta: "Upcoming", desc: "Warriors travel the world retrieving dangerous vibranium artifacts." },
+            { id: "marvel-zombies", title: "Marvel Zombies", year: "2025", type: "Series", meta: "Upcoming", desc: "A new generation of heroes battles a spreading zombie scourge." },
+            { id: "wonder-man", title: "Wonder Man", year: "2025", type: "Series", meta: "Upcoming", desc: "Simon Williams transitions from actor to superhero." },
+            { id: "spider-man-4", title: "Spider-Man 4", year: "2026", type: "Movie", meta: "Upcoming", desc: "Peter Parker's next chapter after everyone forgot who he is." },
+            { id: "vision-quest", title: "Vision Series", year: "2026", type: "Series", meta: "Upcoming", desc: "The White Vision explores his new identity and memories." },
+            { id: "avengers-doomsday", title: "Avengers: Doomsday", year: "2026", type: "Movie", meta: "Upcoming", desc: "The Avengers face off against a massive new threat: Doctor Doom." },
+            { id: "avengers-secret-wars", title: "Avengers: Secret Wars", year: "2027", type: "Movie", meta: "Upcoming", desc: "The epic, multiverse-shattering conclusion to The Multiverse Saga." }
+        ]
+    },
+    {
+        phase: "Phase 7 & Beyond (Upcoming)",
+        items: [
+            { id: "blade", title: "Blade", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The Daywalker enters the MCU to hunt vampires." },
+            { id: "armor-wars", title: "Armor Wars", year: "TBA", type: "Movie", meta: "Upcoming", desc: "James Rhodes must stop Tony Stark's tech from falling into the wrong hands." },
+            { id: "shang-chi-2", title: "Shang-Chi 2", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The continued adventures of Shang-Chi and the Ten Rings." },
+            { id: "x-men", title: "X-Men", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The highly anticipated arrival of Mutants to the Sacred Timeline." }
+        ]
+    }
+];
+
+let savedProgress = JSON.parse(localStorage.getItem("mcuProgress")) || {};
+let totalItems = 0;
+let watchedItems = 0;
+
+// Smart Image Cache (Ek bar download hui photo wapas download nahi hogi)
+const imageCache = {};
+
+const container = document.getElementById("tracker-container");
+const activePoster = document.getElementById("active-poster");
+const activeType = document.getElementById("active-type");
+const activeTitle = document.getElementById("active-title");
+const activeMeta = document.getElementById("active-meta");
+const activeDesc = document.getElementById("active-desc");
+
+// 🌐 LIVE OMDB API SEARCH
+async function fetchPosterFromOMDB(title) {
+    if (OMDB_API_KEY === "YOUR_API_KEY_HERE" || OMDB_API_KEY === "") {
+        return `https://placehold.co/400x600/eef1f5/d32f2f?text=API+KEY+MISSING\\n\\nCheck+script.js`;
+    }
+    
+    if (imageCache[title]) return imageCache[title];
+
+    try {
+        // Cleaning title for better API results
+        let cleanTitle = title.replace(/\s*\(Season \d+\)\s*/gi, '').replace(/\*/g, '').trim();
+        
+        // Spider-Man 4 aur upcoming movies ke liye special fix taaki wrong poster na aaye
+        if (cleanTitle === "Spider-Man 4" || cleanTitle === "Avengers: Doomsday" || cleanTitle === "Avengers: Secret Wars" || cleanTitle === "The Fantastic Four: First Steps") {
+            return `https://placehold.co/400x600/eef1f5/d32f2f?text=CLASSIFIED\\n\\nUPCOMING+PROJECT`;
+        }
+
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(cleanTitle)}`);
+        const data = await response.json();
+        
+        if (data.Response === "True" && data.Poster && data.Poster !== "N/A") {
+            imageCache[title] = data.Poster; 
+            return data.Poster;
+        }
+        
+        return `https://placehold.co/400x600/eef1f5/d32f2f?text=CLASSIFIED\\n\\n${encodeURIComponent(cleanTitle)}`;
+    } catch (error) {
+        console.error("OMDb API Error:", error);
+        return `https://placehold.co/400x600/eef1f5/d32f2f?text=OFFLINE\\n\\n${encodeURIComponent(title)}`;
+    }
+}
+
+// Generate the Lists
+mcuData.forEach(phase => {
+    const section = document.createElement("section");
+    section.className = "phase-section";
+    
+    const title = document.createElement("h2");
+    title.className = "phase-title";
+    title.textContent = phase.phase;
+    section.appendChild(title);
+
+    const list = document.createElement("ul");
+    list.className = "movie-list";
+
+    phase.items.forEach(item => {
+        totalItems++; 
+        const li = document.createElement("li");
+        li.className = "movie-item";
+        
+        const isWatched = savedProgress[item.id] === true;
+        if (isWatched) {
+            li.classList.add("watched");
+            watchedItems++;
+        }
+
+        li.innerHTML = `
+            <input type="checkbox" id="${item.id}" ${isWatched ? "checked" : ""}>
+            <label class="movie-label" for="${item.id}">${item.title} (${item.year})</label>
+        `;
+
+        // Saving Data on Checkbox Click
+        const checkbox = li.querySelector("input");
+        checkbox.addEventListener("change", (e) => {
+            if (e.target.checked) {
+                savedProgress[item.id] = true;
+                li.classList.add("watched");
+                watchedItems++;
+            } else {
+                savedProgress[item.id] = false;
+                li.classList.remove("watched");
+                watchedItems--;
+            }
+            localStorage.setItem("mcuProgress", JSON.stringify(savedProgress));
+            updateCounters();
+        });
+
+        // 🎯 HOVER EFFECT - Triggering API Fetch
+        li.addEventListener("mouseenter", async () => {
+            activeTitle.textContent = item.title;
+            activeType.textContent = item.type.toUpperCase();
+            activeMeta.textContent = `/// DATA: ${item.meta || "CLASSIFIED"} | YEAR: ${item.year}`;
+            activeDesc.textContent = item.desc || "Information restricted by S.H.I.E.L.D.";
+
+            activePoster.style.opacity = "0.5";
+            activePoster.src = `https://placehold.co/400x600/eef1f5/111111?text=SEARCHING\\nDATABASE...`;
+            
+            const realPosterUrl = await fetchPosterFromOMDB(item.title);
+            activePoster.src = realPosterUrl;
+            activePoster.style.opacity = "1";
+        });
+
+        list.appendChild(li);
+    });
+
+    section.appendChild(list);
+    container.appendChild(section);
+});
+
+// Progress Bar Math
+function updateCounters() {
+    document.getElementById("watched-count").textContent = watchedItems;
+    document.getElementById("remaining-count").textContent = totalItems - watchedItems;
+    document.getElementById("total-count").textContent = totalItems;
+    
+    const percentage = (watchedItems / totalItems) * 100;
+    document.getElementById("progress-fill").style.width = percentage + "%";
+}
+
+updateCounters();

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800;900&display=swap');
+
+:root {
+    --bg-main: #eef1f5; 
+    --bg-panel: #ffffff; 
+    --bg-hover: #f4f6f8;
+    --accent-red: #d32f2f; 
+    --text-main: #111111; 
+    --text-muted: #555555;
+    --border-color: #cccccc;
+    --shield-green: #1f7f34;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 50px;
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 20px 20px; 
+}
+
+/* Header */
+.shield-header {
+    background-color: var(--bg-panel);
+    border-bottom: 3px solid var(--accent-red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.header-container { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+.brand h1 { font-family: 'Share Tech Mono', monospace; font-size: 28px; color: #000; }
+.brand span { color: var(--accent-red); }
+.clearance { font-family: 'Share Tech Mono', monospace; color: var(--shield-green); font-size: 12px; margin-top: 5px; font-weight: bold; }
+
+.progress-container { display: flex; gap: 30px; }
+.stat-box { text-align: right; font-family: 'Share Tech Mono', monospace; }
+.stat-title { font-size: 11px; color: var(--text-muted); font-weight: bold; display: block; }
+.stat-value { font-size: 22px; color: var(--accent-red); font-weight: bold; }
+.progress-bar-bg { width: 100%; height: 4px; background-color: #e0e0e0; }
+.progress-bar-fill { height: 100%; background-color: var(--accent-red); width: 0%; transition: width 0.5s ease-out; }
+
+/* Dashboard */
+.dashboard { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 30px; align-items: start; }
+
+/* Left Panel */
+.phase-section { background-color: var(--bg-panel); border: 1px solid var(--border-color); margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.phase-title { background-color: #f8f9fa; padding: 12px 20px; font-size: 15px; font-family: 'Share Tech Mono', monospace; color: #000; border-bottom: 2px solid var(--text-main); font-weight: bold; }
+
+.movie-list { list-style: none; }
+.movie-item { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+.movie-item:last-child { border-bottom: none; }
+.movie-item:hover { background-color: var(--bg-hover); border-left: 4px solid var(--accent-red); padding-left: 16px; }
+
+.movie-item input[type="checkbox"] { appearance: none; background-color: transparent; margin-right: 15px; width: 20px; height: 20px; border: 2px solid #000; display: grid; place-content: center; cursor: pointer; }
+.movie-item input[type="checkbox"]::before { content: "X"; font-family: 'Share Tech Mono', monospace; font-size: 16px; color: var(--accent-red); font-weight: bold; transform: scale(0); transition: 100ms transform ease-in-out; }
+.movie-item input[type="checkbox"]:checked::before { transform: scale(1); }
+.movie-label { font-size: 15px; flex-grow: 1; font-weight: 600; cursor: pointer; }
+.movie-item.watched .movie-label { text-decoration: line-through; color: #999; }
+
+/* Right Panel */
+.right-panel { position: sticky; top: 120px; }
+.poster-card { background-color: var(--bg-panel); border: 1px solid var(--border-color); padding: 20px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.paper-clip { position: absolute; top: -15px; left: 45%; width: 15px; height: 40px; border: 3px solid #999; border-radius: 10px; z-index: 5; background: transparent; border-bottom: none; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+
+.poster-image-wrapper { position: relative; width: 100%; height: 480px; background-color: #000; border: 3px solid #111; margin-bottom: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center;}
+.poster-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease-in-out; }
+
+.poster-details { border-top: 2px solid #000; padding-top: 15px; }
+.type-badge { display: inline-block; background-color: #000; font-family: 'Share Tech Mono', monospace; font-size: 12px; padding: 3px 8px; color: #fff; margin-bottom: 10px; }
+#active-title { font-size: 20px; margin-bottom: 5px; color: #000; font-weight: 800; }
+.modal-meta { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--accent-red); margin-bottom: 15px; font-weight: bold; }
+#active-desc { font-size: 14px; line-height: 1.6; color: var(--text-muted); }

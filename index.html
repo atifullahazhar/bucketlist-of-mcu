@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.H.I.E.L.D. Ultimate Database</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="shield-header">
+        <div class="header-container">
+            <div class="brand">
+                <h1>S.H.I.E.L.D. <span>DOSSIER</span></h1>
+                <div class="clearance">CLEARANCE LEVEL: 7 [AUTHORIZED]</div>
+            </div>
+            <div class="progress-container">
+                <div class="stat-box">
+                    <span class="stat-title">FILES CLEARED</span>
+                    <span class="stat-value" id="watched-count">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-title">PENDING</span>
+                    <span class="stat-value" id="remaining-count">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-title">TOTAL ASSETS</span>
+                    <span class="stat-value" id="total-count">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <!-- Left Panel: Movie/Series List -->
+        <main id="tracker-container" class="left-panel">
+            <!-- JavaScript will load the 80 items here -->
+        </main>
+
+        <!-- Right Panel: Live Poster View -->
+        <aside class="right-panel">
+            <div class="poster-card" id="poster-card">
+                <div class="paper-clip"></div>
+                
+                <div class="poster-image-wrapper">
+                    <!-- Default image before hover -->
+                    <img id="active-poster" src="https://placehold.co/400x600/eef1f5/111111?text=AWAITING+INPUT" alt="S.H.I.E.L.D. Secure Image">
+                </div>
+
+                <div class="poster-details">
+                    <div class="type-badge" id="active-type">DATABASE</div>
+                    <h2 id="active-title">Select a File</h2>
+                    <div class="modal-meta" id="active-meta">/// DATA: SECURE | YEAR: 2026</div>
+                    <p id="active-desc">Hover over any file name on the left to securely retrieve its official visual data.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
