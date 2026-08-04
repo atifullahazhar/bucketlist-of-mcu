@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 /* =========================================
-   S.H.I.E.L.D. NEUMORPHISM UI (MARVEL THEME)
+   DC UNIVERSE UI (DC BLUE THEME)
    ========================================= */
 :root {
     /* Light Theme variables */
@@ -10,14 +10,14 @@
     --shadow-light-2: #ffffff;
     --text-light: #2d3436;
     
-    /* Dark Theme variables */
-    --bg-dark: #2b2d35;
-    --shadow-dark-1: #1d1f25;
-    --shadow-dark-2: #393b45;
+    /* Dark Theme variables (Gotham Navy/Grey tint) */
+    --bg-dark: #1b2631;
+    --shadow-dark-1: #121a22;
+    --shadow-dark-2: #243240;
     --text-dark: #dfe6e9;
     
-    /* Marvel Red Accent */
-    --marvel-red: #d32f2f;
+    /* DC BLUE Accent (Variable name remains 'marvel-red' internally for HTML compatibility) */
+    --marvel-red: #005b9f; 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }

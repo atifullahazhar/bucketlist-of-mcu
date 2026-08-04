@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.H.I.E.L.D. DOSSIER</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Chart.js for the Progress Tracker -->
+    <title>MULTIVERSE DOSSIER</title>
+    <!-- Dynamic CSS Link -->
+    <link id="theme-style" rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+    <!-- UNIVERSE SELECTION GATEWAY MODAL -->
+    <div id="universe-gateway" class="modal" style="display: none; background: rgba(0,0,0,0.95); z-index: 9999;">
+        <div class="modal-content data-content" style="text-align: center; padding: 50px 30px; max-width: 600px;">
+            <h1 style="font-family: 'Share Tech Mono', monospace; font-size: 32px; margin-bottom: 10px;">SELECT DATABASE STREAM</h1>
+            <p style="margin-bottom: 30px; opacity: 0.7;">Establish secure connection to a cinematic universe:</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button onclick="loadUniverse('marvel')" style="border-left: 5px solid #d32f2f;">🔴 Marvel Cinematic Universe (MCU)</button>
+                <button onclick="loadUniverse('dc')" style="border-left: 5px solid #005b9f;">🔵 DC Universe (DCU)</button>
+                <button onclick="loadUniverse('indian')" style="border-left: 5px solid #27ae60;">🟢 Indian Supernatural Universe</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Header Section -->
     <header>
         <div class="brand">
             <h1>S.H.I.E.L.D. <span>DOSSIER</span></h1>
-            <p style="font-size: 12px; font-family: monospace; opacity: 0.7;">CLEARANCE LEVEL: 7 [AUTHORIZED]</p>
+            <p style="font-size: 12px; font-family: monospace; opacity: 0.7;">
+                CLEARANCE LEVEL: 7 | STREAM: <span id="current-universe-badge" style="font-weight: bold; color: var(--marvel-red);">AWAITING SELECTION</span>
+            </p>
         </div>
         
         <div class="header-controls">
             <input type="text" id="search-bar" placeholder="Search Database...">
-            <!-- New Python Automation Admin Buttons -->
-            <button id="sync-btn" title="Run Python Sync & Link Checker">🔄 Sync DB</button>
+            <!-- Switch Universe Button (Opens Gateway) -->
+            <button id="switch-universe-btn" onclick="document.getElementById('universe-gateway').style.display='flex'">🌌 Switch Universe</button>
+            <button id="sync-btn" title="Run Python Sync">🔄 Sync DB</button>
             <button id="analytics-btn" title="View Advanced Analytics">📊 Analytics</button>
             <button id="theme-toggle">🌙 Dark Mode</button>
             <button id="thanos-snap">🤌 Snap</button>
@@ -37,16 +53,15 @@
         </div>
     </header>
 
-    <!-- NEW: Live Web-Scraped News Ticker -->
+    <!-- Live Web-Scraped News Ticker -->
     <div class="news-ticker-container">
         <div class="ticker-label">LIVE INTEL</div>
-        <marquee class="ticker-text" id="live-news-ticker">Initializing Python web scraper... Awaiting live MCU news feed...</marquee>
+        <marquee class="ticker-text" id="live-news-ticker">Awaiting secure universe connection...</marquee>
     </div>
 
     <!-- Main 2-Column Layout -->
     <div class="container">
         
-        <!-- Left Panel: Tabs & Movie List -->
         <div class="left-panel">
             <div class="list-controls">
                 <button id="sort-timeline" class="tab-btn active">Timeline Order</button>
@@ -54,12 +69,9 @@
                 <button id="filter-watchlist" class="tab-btn">Watchlist</button>
                 <button id="filter-upcoming" class="tab-btn">Upcoming</button>
             </div>
-            
-            <!-- JS injects the phases and movies here -->
             <div id="tracker-container"></div>
         </div>
 
-        <!-- Right Panel: Info & Poster -->
         <div class="right-panel">
             <div class="info-panel">
                 <div class="poster-container">
@@ -79,7 +91,6 @@
                     <p><strong>Director:</strong> <span id="active-director">-</span></p>
                     <p><strong>Cast:</strong> <span id="active-cast">-</span></p>
                     <p><strong>IMDb:</strong> ⭐ <span id="active-rating">-</span></p>
-                    <!-- NEW: Python Data Placeholders -->
                     <p><strong>Box Office:</strong> <span id="active-boxoffice" style="color: #4cd137;">-</span></p>
                     <p><strong>Post-Credits:</strong> <span id="active-credits">-</span></p>
                     <p><strong>Public Sentiment:</strong> <span id="active-sentiment">-</span></p>
@@ -87,8 +98,7 @@
 
                 <div id="active-desc">Select a project from the left panel to decrypt file overview.</div>
                 
-                <!-- NEW: Comic Recommender Button -->
-                <button id="comic-recommender-btn" style="display: none; width: 100%; margin-top: 10px; background-color: #1e272e; color: white;">📚 Recommend Origin Comics</button>
+                <button id="comic-recommender-btn" style="display: none; width: 100%; margin-top: 10px; background-color: #1e272e; color: white;">📚 Recommend Lore / Origin</button>
 
                 <div class="chart-container">
                     <canvas id="progressChart"></canvas>
@@ -106,17 +116,57 @@
         </div>
     </div>
 
-    <!-- NEW: Python Data Display Modal (For Analytics & Comics) -->
+    <!-- Python Data Display Modal -->
     <div id="data-modal" class="modal">
         <div class="modal-content data-content" style="padding: 30px;">
             <button id="close-data-modal" class="close-btn">X</button>
             <h2 id="data-modal-title" style="margin-bottom: 20px; font-family: 'Share Tech Mono', monospace; border-bottom: 2px solid var(--marvel-red); padding-bottom: 10px;">S.H.I.E.L.D. Terminal</h2>
-            <div id="data-modal-body" style="font-size: 16px; line-height: 1.6; min-height: 200px;">
-                <!-- Python injects charts or comic lists here -->
-            </div>
+            <div id="data-modal-body" style="font-size: 16px; line-height: 1.6; min-height: 200px;"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- NEW: Auto-Reloading Dynamic Script Loader -->
+    <script>
+        // 1. Check if user already has a universe saved in browser memory
+        const savedUniverse = localStorage.getItem('activeUniverse');
+        const gatewayModal = document.getElementById('universe-gateway');
+        const badge = document.getElementById('current-universe-badge');
+
+        if (savedUniverse) {
+            // Universe is selected -> Hide Modal and Load corresponding files
+            gatewayModal.style.display = 'none';
+            const newScript = document.createElement('script');
+
+            if (savedUniverse === 'marvel') {
+                document.getElementById('theme-style').href = 'style.css';
+                newScript.src = 'script.js';
+                badge.innerText = 'MCU (MARVEL)';
+                badge.style.color = '#d32f2f'; 
+            } else if (savedUniverse === 'dc') {
+                document.getElementById('theme-style').href = 'dc.css';
+                newScript.src = 'dc.js';
+                badge.innerText = 'DCU (DC COMICS)';
+                badge.style.color = '#005b9f'; 
+            } else if (savedUniverse === 'indian') {
+                document.getElementById('theme-style').href = 'ind.css';
+                newScript.src = 'ind.js';
+                badge.innerText = 'MADDOCK (INDIAN HORROR)';
+                badge.style.color = '#27ae60'; 
+            }
+            
+            document.body.appendChild(newScript);
+        } else {
+            // No universe selected yet -> Show Modal
+            gatewayModal.style.display = 'flex';
+        }
+
+        // 2. Function triggered when a universe button is clicked
+        function loadUniverse(universe) {
+            // Save the choice in local storage so it remembers next time
+            localStorage.setItem('activeUniverse', universe);
+            // RELOAD THE PAGE to completely clear old JS variables and safely inject the new ones
+            location.reload();
+        }
+    </script>
 </body>
 </html>
