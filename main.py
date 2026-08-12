@@ -1,9 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 import pandas as pd
 import random
+import io
 
-app = FastAPI(title="Multiverse Database API", version="3.0")
+app = FastAPI(title="MARVEL STUDIOS S.H.I.E.L.D. API", version="5.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -13,81 +15,78 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 1. Live Web Scraping / News Ticker
+# 1. LIVE MARVEL / X-MEN / SONY NEWS TICKER
 @app.get("/api/news")
-def get_live_news(universe: str = "marvel"):
-    try:
-        headlines = []
-        if universe == "marvel":
-            headlines = [
-                "🕷️ MCU RUMOR: Tom Holland spotted on set for Spider-Man 4...",
-                "📈 MCU BOX OFFICE: Avengers: Doomsday shatters records!",
-                "🎬 MCU LEAK: Fantastic Four post-credit scene hints at Galactus..."
-            ]
-        elif universe == "dc":
-            headlines = [
-                "🦇 DCU CASTING: New Batman announced for James Gunn's universe...",
-                "🦸‍♂️ DCU UPDATE: Superman Legacy officially wraps filming!",
-                "💥 DCU RUMOR: Lanterns series adds massive budget for VFX..."
-            ]
-        elif universe == "indian":
-            headlines = [
-                "👻 MADDOCK LEAK: Stree 3 script finalized, shooting begins soon...",
-                "🐺 MADDOCK UPDATE: Varun Dhawan teases Bhediya 2 crossover...",
-                "🔥 MADDOCK BOX OFFICE: Munjya overtakes international releases!"
-            ]
-            
-        return {"status": "success", "universe": universe, "news": headlines}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
+def get_live_news():
+    headlines = [
+        "🕷️ SPIDER-NOIR UPDATE: Nicolas Cage live-action series begins production!",
+        "⚔️ MUTANT INTEL: X-Men official MCU reboot script underway at Marvel Studios.",
+        "📈 BOX OFFICE LIVE: Deadpool & Wolverine crosses $1.3 Billion worldwide!",
+        "🕸️ SONY LEAK: Beyond the Spider-Verse release window teased by producers.",
+        "🎬 DOOMSDAY INTEL: Robert Downey Jr. preps for Doctor Doom role in London."
+    ]
+    return {"status": "success", "universe": "MARVEL_MULTIVERSE", "news": headlines}
 
-# 2. Automated Sync Simulation
+# 2. AUTOMATED S.H.I.E.L.D. DATABASE SYNC
 @app.get("/api/sync")
-def sync_database(universe: str = "marvel"):
+def sync_database():
     return {
-        "links_checked": 85 if universe == "marvel" else (40 if universe == "dc" else 15),
-        "broken_links_fixed": 0,
-        "universe_synced": universe.upper(),
-        "status": f"{universe.upper()} Database fully synchronized."
+        "links_checked": 120,
+        "xmen_files_verified": 13,
+        "sony_files_verified": 16,
+        "status": "S.H.I.E.L.D. Multiverse Database fully synchronized and operational."
     }
 
-# 3. Analytics Dashboard
+# 3. MARVEL MULTIVERSE ANALYTICS DASHBOARD
 @app.get("/api/analytics")
-def get_analytics(universe: str = "marvel"):
-    if universe == "marvel":
-        data = {"Phase": ["Phase 1", "Phase 2", "Phase 3"], "Avg_Rating": [7.5, 7.3, 7.9], "Total_Box_Office_Billion": [3.8, 5.2, 13.5]}
-    elif universe == "dc":
-        data = {"Era": ["Snyderverse", "DCU Chapter 1"], "Avg_Rating": [6.8, 7.5], "Total_Box_Office_Billion": [4.5, 2.1]}
-    elif universe == "indian":
-        data = {"Phase": ["Origin Phase (Stree/Roohi)", "Expansion (Bhediya/Munjya)"], "Avg_Rating": [7.6, 7.8], "Total_Box_Office_Cr": [350, 420]}
-        
+def get_analytics():
+    data = {
+        "Saga": ["Infinity Saga (MCU)", "Multiverse Saga (MCU)", "Fox X-Men Saga", "Sony Spider-Verse"],
+        "Total_Projects": [23, 20, 13, 10],
+        "Avg_Rating": [7.6, 7.2, 7.1, 7.4],
+        "Total_Box_Office_Billion": [22.6, 9.8, 6.0, 3.5]
+    }
     df = pd.DataFrame(data)
-    return {"status": "success", "universe": universe, "metrics": df.to_dict(orient="records")}
+    return {"status": "success", "universe": "MARVEL_MULTIVERSE", "metrics": df.to_dict(orient="records")}
 
-# 4. Sentiment Analysis
+# 4. SENTIMENT ANALYSIS (NLP MODEL)
 @app.get("/api/sentiment/{movie_title}")
-def analyze_sentiment(movie_title: str, universe: str = "marvel"):
-    positive_score = random.randint(65, 95)
+def analyze_sentiment(movie_title: str):
+    positive_score = random.randint(70, 96)
     negative_score = 100 - positive_score
     return {
         "movie": movie_title,
-        "universe": universe,
+        "nlp_engine": "S.H.I.E.L.D. Sentiment Processor v5.0",
         "sentiment": {
             "positive": f"{positive_score}%",
             "negative": f"{negative_score}%",
-            "verdict": "Overwhelmingly Positive" if positive_score > 75 else "Mixed Reactions"
+            "verdict": "Hyped / Highly Anticipated" if positive_score > 80 else "Generally Positive"
         }
     }
 
-# 5. Smart Recommender
+# 5. SMART COMIC & LORE RECOMMENDER
 @app.get("/api/recommend/{movie_id}")
-def recommend_lore(movie_id: str, universe: str = "marvel"):
-    recommendations = []
-    if universe == "marvel":
-        recommendations = [{"title": "Infinity Gauntlet #1-6", "match": "94%"}]
-    elif universe == "dc":
-        recommendations = [{"title": "Flashpoint Paradox", "match": "92%"}, {"title": "All-Star Superman", "match": "88%"}]
-    elif universe == "indian":
-        recommendations = [{"title": "Indian Folklore: Nale Ba (Witch Myth)", "match": "98%"}, {"title": "Konkan Ghost Stories", "match": "85%"}]
-        
-    return {"movie_id": movie_id, "universe": universe, "recommendations": recommendations}
+def recommend_lore(movie_id: str):
+    recommendations = [
+        {"title": "Spider-Verse (2014) Comic Run", "match": "96%"},
+        {"title": "House of M (Mutant Saga)", "match": "92%"},
+        {"title": "Secret Wars (2015 Issue #1-9)", "match": "90%"}
+    ]
+    return {"movie_id": movie_id, "ai_confidence": "Optimal", "recommendations": recommendations}
+
+# 6. CSV MARVEL DATABASE EXPORT
+@app.get("/api/export")
+def export_database():
+    df = pd.DataFrame({
+        "ID": ["iron-man-1", "x-men-2000", "venom-1", "spider-noir", "avengers-doomsday"],
+        "Title": ["Iron Man", "X-Men", "Venom", "Spider-Noir", "Avengers: Doomsday"],
+        "Category": ["MCU Phase 1", "Fox Mutant Saga", "Sonyverse", "Released Series", "MCU Phase 6"],
+        "Status": ["Classified"] * 5
+    })
+
+    stream = io.StringIO()
+    df.to_csv(stream, index=False)
+    
+    response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
+    response.headers["Content-Disposition"] = "attachment; filename=marvel_multiverse_database.csv"
+    return response

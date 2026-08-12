@@ -3,39 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MULTIVERSE DOSSIER</title>
-    <!-- Dynamic CSS Link -->
+    <title>MARVEL STUDIOS DOSSIER</title>
     <link id="theme-style" rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <!-- UNIVERSE SELECTION GATEWAY MODAL -->
-    <div id="universe-gateway" class="modal" style="display: none; background: rgba(0,0,0,0.95); z-index: 9999;">
-        <div class="modal-content data-content" style="text-align: center; padding: 50px 30px; max-width: 600px;">
-            <h1 style="font-family: 'Share Tech Mono', monospace; font-size: 32px; margin-bottom: 10px;">SELECT DATABASE STREAM</h1>
-            <p style="margin-bottom: 30px; opacity: 0.7;">Establish secure connection to a cinematic universe:</p>
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <button onclick="loadUniverse('marvel')" style="border-left: 5px solid #d32f2f;">🔴 Marvel Cinematic Universe (MCU)</button>
-                <button onclick="loadUniverse('dc')" style="border-left: 5px solid #005b9f;">🔵 DC Universe (DCU)</button>
-                <button onclick="loadUniverse('indian')" style="border-left: 5px solid #27ae60;">🟢 Indian Supernatural Universe</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Section -->
+    <!-- Header Section with Animated Marvel Logo -->
     <header>
         <div class="brand">
-            <h1>S.H.I.E.L.D. <span>DOSSIER</span></h1>
-            <p style="font-size: 12px; font-family: monospace; opacity: 0.7;">
-                CLEARANCE LEVEL: 7 | STREAM: <span id="current-universe-badge" style="font-weight: bold; color: var(--marvel-red);">AWAITING SELECTION</span>
+            <!-- Fixed: Direct High-Quality Transparent Web Link -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Marvel_Studios_2016_logo.svg" alt="Marvel Studios Logo" class="marvel-logo" id="marvel-logo-btn" title="Click to view Marvel Studios Archives">
+            <p style="font-size: 13px; font-family: monospace; opacity: 0.8; margin-top: 12px; letter-spacing: 1px;">
+                CLEARANCE LEVEL: 7 | STREAM: <span style="font-weight: bold; color: var(--marvel-red); text-shadow: 0 0 5px var(--marvel-red);">MCU DATABASE</span>
             </p>
         </div>
         
         <div class="header-controls">
             <input type="text" id="search-bar" placeholder="Search Database...">
-            <!-- Switch Universe Button (Opens Gateway) -->
-            <button id="switch-universe-btn" onclick="document.getElementById('universe-gateway').style.display='flex'">🌌 Switch Universe</button>
             <button id="sync-btn" title="Run Python Sync">🔄 Sync DB</button>
             <button id="analytics-btn" title="View Advanced Analytics">📊 Analytics</button>
             <button id="theme-toggle">🌙 Dark Mode</button>
@@ -56,7 +41,7 @@
     <!-- Live Web-Scraped News Ticker -->
     <div class="news-ticker-container">
         <div class="ticker-label">LIVE INTEL</div>
-        <marquee class="ticker-text" id="live-news-ticker">Awaiting secure universe connection...</marquee>
+        <marquee class="ticker-text" id="live-news-ticker">Initializing Marvel Studios Secure Connection...</marquee>
     </div>
 
     <!-- Main 2-Column Layout -->
@@ -68,6 +53,7 @@
                 <button id="sort-release" class="tab-btn">Release Order</button>
                 <button id="filter-watchlist" class="tab-btn">Watchlist</button>
                 <button id="filter-upcoming" class="tab-btn">Upcoming</button>
+                <button id="random-picker-btn" class="tab-btn shiny-red-btn">🎲 Random Target</button>
             </div>
             <div id="tracker-container"></div>
         </div>
@@ -84,21 +70,21 @@
                         <h2 id="active-title">Standby...</h2>
                         <p class="meta" id="active-meta">/// SELECT A FILE TO VIEW DATA</p>
                     </div>
-                    <button id="watch-trailer-btn" style="display: none; background-color: var(--marvel-red); color: white;">▶ Watch Trailer</button>
+                    <button id="watch-trailer-btn" class="shiny-red-btn" style="display: none;">▶ Watch Trailer</button>
                 </div>
                 
                 <div class="metadata-box">
                     <p><strong>Director:</strong> <span id="active-director">-</span></p>
                     <p><strong>Cast:</strong> <span id="active-cast">-</span></p>
                     <p><strong>IMDb:</strong> ⭐ <span id="active-rating">-</span></p>
-                    <p><strong>Box Office:</strong> <span id="active-boxoffice" style="color: #4cd137;">-</span></p>
+                    <p><strong>Box Office:</strong> <span id="active-boxoffice" style="color: #4cd137; text-shadow: 0 0 5px rgba(76, 209, 55, 0.4);">-</span></p>
                     <p><strong>Post-Credits:</strong> <span id="active-credits">-</span></p>
                     <p><strong>Public Sentiment:</strong> <span id="active-sentiment">-</span></p>
                 </div>
 
                 <div id="active-desc">Select a project from the left panel to decrypt file overview.</div>
                 
-                <button id="comic-recommender-btn" style="display: none; width: 100%; margin-top: 10px; background-color: #1e272e; color: white;">📚 Recommend Lore / Origin</button>
+                <button id="comic-recommender-btn" class="shiny-dark-btn" style="display: none; width: 100%; margin-top: 10px;">📚 Recommend Lore / Origin</button>
 
                 <div class="chart-container">
                     <canvas id="progressChart"></canvas>
@@ -125,48 +111,21 @@
         </div>
     </div>
 
-    <!-- NEW: Auto-Reloading Dynamic Script Loader -->
-    <script>
-        // 1. Check if user already has a universe saved in browser memory
-        const savedUniverse = localStorage.getItem('activeUniverse');
-        const gatewayModal = document.getElementById('universe-gateway');
-        const badge = document.getElementById('current-universe-badge');
+    <!-- Marvel Studios Deep Lore Modal -->
+    <div id="marvel-info-modal" class="modal">
+        <div class="modal-content data-content custom-scrollbar" style="padding: 40px; max-width: 800px; max-height: 85vh; overflow-y: auto;">
+            <button id="close-marvel-info" class="close-btn">X</button>
+            <div style="text-align: center; margin-bottom: 25px;">
+                <!-- Fixed: Direct High-Quality Transparent Web Link with Drop Shadow -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Marvel_Studios_2016_logo.svg" alt="Marvel Studios" style="max-width: 280px; filter: drop-shadow(0 0 15px rgba(230, 36, 41, 0.8));">
+            </div>
+            <h2 style="font-family: 'Share Tech Mono', monospace; color: var(--marvel-red); border-bottom: 2px solid var(--marvel-red); padding-bottom: 10px; text-align: center; font-size: 28px; text-shadow: 0 0 10px rgba(230, 36, 41, 0.4);">CLASSIFIED STUDIO ARCHIVES</h2>
+            <div id="marvel-info-body" style="font-size: 16px; line-height: 1.8; margin-top: 25px; text-align: justify;">
+                <!-- JS will inject the deep lore here -->
+            </div>
+        </div>
+    </div>
 
-        if (savedUniverse) {
-            // Universe is selected -> Hide Modal and Load corresponding files
-            gatewayModal.style.display = 'none';
-            const newScript = document.createElement('script');
-
-            if (savedUniverse === 'marvel') {
-                document.getElementById('theme-style').href = 'style.css';
-                newScript.src = 'script.js';
-                badge.innerText = 'MCU (MARVEL)';
-                badge.style.color = '#d32f2f'; 
-            } else if (savedUniverse === 'dc') {
-                document.getElementById('theme-style').href = 'dc.css';
-                newScript.src = 'dc.js';
-                badge.innerText = 'DCU (DC COMICS)';
-                badge.style.color = '#005b9f'; 
-            } else if (savedUniverse === 'indian') {
-                document.getElementById('theme-style').href = 'ind.css';
-                newScript.src = 'ind.js';
-                badge.innerText = 'MADDOCK (INDIAN HORROR)';
-                badge.style.color = '#27ae60'; 
-            }
-            
-            document.body.appendChild(newScript);
-        } else {
-            // No universe selected yet -> Show Modal
-            gatewayModal.style.display = 'flex';
-        }
-
-        // 2. Function triggered when a universe button is clicked
-        function loadUniverse(universe) {
-            // Save the choice in local storage so it remembers next time
-            localStorage.setItem('activeUniverse', universe);
-            // RELOAD THE PAGE to completely clear old JS variables and safely inject the new ones
-            location.reload();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
-// --- S.H.I.E.L.D. DATABASE v3.0 (MCU COMPLETE STREAM) ---
+// --- S.H.I.E.L.D. DATABASE v5.1 (ULTIMATE MARVEL MULTIVERSE STREAM) ---
 const OMDB_API_KEY = "ef1d0492"; 
 
-// MCU COMPLETE TIMELINE (No Shortcuts)
+// COMPLETE MARVEL MULTIVERSE TIMELINE
 const mcuData = [
     {
         phase: "Phase 1: The Infinity Saga",
@@ -102,12 +102,56 @@ const mcuData = [
             { id: "blade", title: "Blade", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The Daywalker enters the MCU to hunt vampires." },
             { id: "armor-wars", title: "Armor Wars", year: "TBA", type: "Movie", meta: "Upcoming", desc: "James Rhodes must stop Tony Stark's tech from falling into the wrong hands." },
             { id: "shang-chi-2", title: "Shang-Chi 2", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The continued adventures of Shang-Chi and the Ten Rings." },
-            { id: "x-men", title: "X-Men", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The highly anticipated arrival of Mutants to the Sacred Timeline." }
+            { id: "x-men-mcu", title: "X-Men (MCU Reboot)", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The highly anticipated arrival of Mutants to the Sacred Timeline." }
+        ]
+    },
+    {
+        phase: "The Fox X-Men & Mutant Legacy",
+        items: [
+            { id: "x-men-2000", title: "X-Men", year: "2000", type: "Movie", meta: "1h 44m", desc: "Wolverine and Rogue enter Charles Xavier's school for mutants.", trailerId: "VNxE3Lyb3nU" },
+            { id: "x2", title: "X2: X-Men United", year: "2003", type: "Movie", meta: "2h 14m", desc: "The X-Men team up with Magneto to stop Colonel William Stryker.", trailerId: "bL64gca0PjU" },
+            { id: "x-men-3", title: "X-Men: The Last Stand", year: "2006", type: "Movie", meta: "1h 44m", desc: "A cure for mutation creates a rift between Professor X and Magneto.", trailerId: "qJEURR10k34" },
+            { id: "x-men-origins", title: "X-Men Origins: Wolverine", year: "2009", type: "Movie", meta: "1h 47m", desc: "The early life of Logan and his time with Weapon X.", trailerId: "LPmbG0l1J5s" },
+            { id: "x-men-first-class", title: "X-Men: First Class", year: "2011", type: "Movie", meta: "2h 12m", desc: "Charles Xavier and Erik Lehnsherr form the first X-Men team in 1962.", trailerId: "kyQJiTym2Lw" },
+            { id: "the-wolverine", title: "The Wolverine", year: "2013", type: "Movie", meta: "2h 6m", desc: "Logan travels to Japan to confront a figure from his past.", trailerId: "g7rowA3m1s4" },
+            { id: "x-men-dofp", title: "X-Men: Days of Future Past", year: "2014", type: "Movie", meta: "2h 12m", desc: "Wolverine travels back to 1973 to prevent a dark apocalyptic future.", trailerId: "pK2zYHWDZKo" },
+            { id: "deadpool-1", title: "Deadpool", year: "2016", type: "Movie", meta: "1h 48m", desc: "A wisecracking mercenary gets experimented on and becomes immortal.", trailerId: "ONHBaC-pfsk" },
+            { id: "x-men-apocalypse", title: "X-Men: Apocalypse", year: "2016", type: "Movie", meta: "2h 24m", desc: "The X-Men must unite to defeat En Sabah Nur, the world's first mutant.", trailerId: "COvnHv43N-s" },
+            { id: "logan", title: "Logan", year: "2017", type: "Movie", meta: "2h 17m", desc: "In a future where mutants are nearly extinct, an elderly Logan leads a quiet life.", trailerId: "Div0iP65aZo" },
+            { id: "deadpool-2", title: "Deadpool 2", year: "2018", type: "Movie", meta: "1h 59m", desc: "Foul-mouthed mutant Wade Wilson brings together a team of mutant rogues.", trailerId: "D86RtevtfrA" },
+            { id: "x-men-dark-phoenix", title: "X-Men: Dark Phoenix", year: "2019", type: "Movie", meta: "1h 54m", desc: "Jean Grey develops incredible powers that corrupt her into the Dark Phoenix.", trailerId: "azvR__GRQic" },
+            { id: "new-mutants", title: "The New Mutants", year: "2020", type: "Movie", meta: "1h 34m", desc: "Five young mutants discover their abilities while held in a secret facility.", trailerId: "W_vJhUAO21U" }
+        ]
+    },
+    {
+        phase: "The Sony Spider-Verse & Multiverse Variants",
+        items: [
+            { id: "spider-man-1-tobey", title: "Spider-Man", year: "2002", type: "Movie", meta: "2h 1m", desc: "Peter Parker gets bitten by a genetically modified spider.", trailerId: "t06RUxPbp_c" },
+            { id: "spider-man-2-tobey", title: "Spider-Man 2", year: "2004", type: "Movie", meta: "2h 7m", desc: "Peter Parker battles Doctor Octopus.", trailerId: "1s9Yln0YwvM" },
+            { id: "spider-man-3-tobey", title: "Spider-Man 3", year: "2007", type: "Movie", meta: "2h 19m", desc: "Peter faces Venom, Sandman, and his own dark side.", trailerId: "e5wUilOeOmg" },
+            { id: "tasm-1", title: "The Amazing Spider-Man", year: "2012", type: "Movie", meta: "2h 16m", desc: "Peter Parker investigates his parents' disappearance.", trailerId: "-tnxzJ0SSOw" },
+            { id: "tasm-2", title: "The Amazing Spider-Man 2", year: "2014", type: "Movie", meta: "2h 22m", desc: "Spider-Man faces Electro and the Green Goblin.", trailerId: "nbp3Ra3Yp74" },
+            { id: "venom-1", title: "Venom", year: "2018", type: "Movie", meta: "1h 52m", desc: "Journalist Eddie Brock acquires the powers of a symbiote.", trailerId: "u9Mv98Gr5pY" },
+            { id: "spider-verse-1", title: "Spider-Man: Into the Spider-Verse", year: "2018", type: "Movie", meta: "1h 57m", desc: "Miles Morales becomes the new Spider-Man.", trailerId: "g4Hbz2jLxvQ" },
+            { id: "venom-2", title: "Venom: Let There Be Carnage", year: "2021", type: "Movie", meta: "1h 37m", desc: "Eddie Brock attempts to interview serial killer Cletus Kasady.", trailerId: "-FmWuCgJcgX0" },
+            { id: "morbius", title: "Morbius", year: "2022", type: "Movie", meta: "1h 44m", desc: "Biochemist Michael Morbius tries to cure himself of a rare blood disease.", trailerId: "oZ6iiRrz1Gc" },
+            { id: "spider-verse-2", title: "Spider-Man: Across the Spider-Verse", year: "2023", type: "Movie", meta: "2h 20m", desc: "Miles Morales catapults across the Multiverse.", trailerId: "cqGjhVJWtEg" },
+            { id: "madame-web", title: "Madame Web", year: "2024", type: "Movie", meta: "1h 56m", desc: "Cassandra Webb develops the power to see the future.", trailerId: "s_76M4c4LTo" },
+            { id: "venom-3", title: "Venom: The Last Dance", year: "2024", type: "Movie", meta: "1h 50m", desc: "Eddie and Venom are on the run in their final chapter.", trailerId: "HyIyd9joTTc" },
+            { id: "kraven", title: "Kraven the Hunter", year: "2024", type: "Movie", meta: "2h 7m", desc: "Sergei Kravinoff is on a mission to prove he is the greatest hunter.", trailerId: "rze8QYwWGCE" },
+            { id: "spider-verse-3", title: "Spider-Man: Beyond the Spider-Verse", year: "TBA", type: "Movie", meta: "Upcoming", desc: "The conclusion to the animated Spider-Verse trilogy." }
+        ]
+    },
+    {
+        phase: "Web Series & Animated Multiverse",
+        items: [
+            { id: "spider-noir", title: "Spider-Noir", year: "2025", type: "Series", meta: "8 Episodes", desc: "Nicolas Cage stars as an aging, down-on-his-luck 1930s private investigator Spider-Man in New York." },
+            { id: "your-friendly-spidey", title: "Your Friendly Neighborhood Spider-Man", year: "2025", type: "Series", meta: "10 Episodes", desc: "An animated series following Peter Parker on his way to becoming Spider-Man in an alternate timeline." }
         ]
     }
 ];
 
-// UNIQUE LOCAL STORAGE FOR MARVEL UNIVERSE
+// LOCAL STORAGE
 let savedProgress = JSON.parse(localStorage.getItem("mcuProgress")) || {};
 let progressChart;
 let currentMode = 'timeline'; 
@@ -122,11 +166,12 @@ const dataModalTitle = document.getElementById('data-modal-title');
 const themeToggle = document.getElementById('theme-toggle');
 const thanosSnapBtn = document.getElementById('thanos-snap');
 
-// Python Simulations (MCU)
+// Python Simulations Ticker
 const simulatedNews = [
-    "🕷️ MCU RUMOR: Tom Holland spotted on set for Spider-Man 4...",
-    "📈 MCU BOX OFFICE: Avengers: Doomsday shatters records!",
-    "🎬 MCU LEAK: Fantastic Four post-credit scene hints at Galactus..."
+    "🕷️ SPIDER-NOIR UPDATE: Nicolas Cage live-action series officially in production!",
+    "⚔️ MUTANT INTEL: X-Men reboot script underway at Marvel Studios...",
+    "📈 BOX OFFICE LIVE: Deadpool & Wolverine crosses $1.3 Billion worldwide!",
+    "🎬 DOOMSDAY INTEL: Robert Downey Jr. preps for Doctor Doom role in London..."
 ];
 let newsIndex = 0;
 setInterval(() => {
@@ -136,19 +181,19 @@ setInterval(() => {
 }, 5000);
 
 document.getElementById('sync-btn').addEventListener('click', () => {
-    alert("Python Sync (MCU):\n- 85 Links Verified\n- S.H.I.E.L.D. Database secure.");
+    alert("Python Sync (MARVEL MULTIVERSE):\n- 120 Links Verified\n- X-Men & Sony Archives Secure.");
 });
 
 document.getElementById('analytics-btn').addEventListener('click', () => {
-    dataModalTitle.innerText = "MCU Global Analytics";
-    dataModalBody.innerHTML = `<p><strong>Phase 3 Box Office:</strong> $13.5 Billion</p><p><strong>Fan Sentiment:</strong> 82% Positive</p>`;
+    dataModalTitle.innerText = "Marvel Multiverse Analytics";
+    dataModalBody.innerHTML = `<p><strong>MCU Total Box Office:</strong> $30+ Billion</p><p><strong>Fox X-Men Saga Box Office:</strong> $6.0 Billion</p><p><strong>Global Fan Sentiment:</strong> 85% Positive</p>`;
     dataModal.style.display = 'flex';
 });
 
 document.getElementById('comic-recommender-btn').addEventListener('click', () => {
     if (!activeMovieData) return;
     dataModalTitle.innerText = `Machine Learning Comic Match: ${activeMovieData.title}`;
-    dataModalBody.innerHTML = `<p><strong>Match 1:</strong> Infinity Gauntlet #1-6 (94% Accuracy)</p><p><strong>Match 2:</strong> Secret Wars (88% Accuracy)</p>`;
+    dataModalBody.innerHTML = `<p><strong>Match 1:</strong> Spider-Verse (2014) Event (96% Match)</p><p><strong>Match 2:</strong> House of M / Mutant Saga (92% Match)</p>`;
     dataModal.style.display = 'flex';
 });
 
@@ -158,8 +203,12 @@ function initChart(watched, pending) {
     if (progressChart) progressChart.destroy();
     progressChart = new Chart(ctx.getContext('2d'), {
         type: 'doughnut',
-        data: { labels: ['Cleared', 'Pending'], datasets: [{ data: [watched, pending], backgroundColor: ['#d32f2f', '#cccccc'], borderWidth: 0 }] },
-        options: { responsive: true, maintainAspectRatio: false }
+        data: { labels: ['Cleared', 'Pending'], datasets: [{ data: [watched, pending], backgroundColor: ['#e62429', '#2d3436'], borderWidth: 0 }] },
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: document.body.classList.contains('dark-theme') ? '#dfe6e9' : '#2d3436' } } }
+        }
     });
 }
 
@@ -243,30 +292,31 @@ async function fetchAdvancedData(item) {
 
     let cleanTitle = item.title.replace(/\s*\(Season \d+\)\s*/gi, '').replace(/\*/g, '').trim();
     try {
-        if (["Vision Series", "Avengers: Secret Wars", "Blade", "Armor Wars", "Shang-Chi 2", "X-Men"].includes(cleanTitle)) {
-            document.getElementById('active-poster').src = `https://placehold.co/400x600/eef1f5/d32f2f?text=CLASSIFIED\\n\\nUPCOMING+PROJECT`;
+        if (["Vision Series", "Avengers: Secret Wars", "Blade", "Armor Wars", "Shang-Chi 2", "X-Men (MCU Reboot)", "Spider-Man: Beyond the Spider-Verse", "Spider-Man: Brand New Day", "Avengers: Doomsday"].includes(cleanTitle)) {
+            document.getElementById('active-poster').src = `https://placehold.co/400x600/1e2025/e62429?text=CLASSIFIED\\n\\nUPCOMING+PROJECT`;
         } else {
             const res = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(cleanTitle)}`);
             const data = await res.json();
-            document.getElementById('active-poster').src = data.Poster && data.Poster !== "N/A" ? data.Poster : `https://placehold.co/400x600/eef1f5/d32f2f?text=NO+IMAGE`;
+            document.getElementById('active-poster').src = data.Poster && data.Poster !== "N/A" ? data.Poster : `https://placehold.co/400x600/1e2025/e62429?text=NO+IMAGE`;
             document.getElementById('active-director').innerText = data.Director || "Unknown";
             document.getElementById('active-cast').innerText = data.Actors || "Classified";
             document.getElementById('active-rating').innerText = data.imdbRating || "N/A";
         }
     } catch (e) {
-        document.getElementById('active-poster').src = `https://placehold.co/400x600/eef1f5/d32f2f?text=OFFLINE`;
+        document.getElementById('active-poster').src = `https://placehold.co/400x600/1e2025/e62429?text=OFFLINE`;
     }
     
-    document.getElementById('active-boxoffice').innerText = item.type === "Series" ? "Streaming (Disney+)" : `$${(Math.random() * 800 + 200).toFixed(1)} Million`;
+    document.getElementById('active-boxoffice').innerText = item.type === "Series" ? "Streaming Platform" : `$${(Math.random() * 800 + 200).toFixed(1)} Million`;
     document.getElementById('active-credits').innerText = Math.floor(Math.random() * 3) + " Scenes";
     document.getElementById('active-sentiment').innerText = `${Math.floor(Math.random() * 30 + 60)}% Positive`;
 }
 
-// Event Listeners for UI Features
+// Event Listeners
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-theme');
         themeToggle.innerText = document.body.classList.contains('dark-theme') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        initChart(parseInt(document.getElementById('watched-count').innerText), parseInt(document.getElementById('remaining-count').innerText));
     });
 }
 
@@ -302,5 +352,61 @@ searchBar.addEventListener('input', (e) => loadMovies(e.target.value));
     });
 });
 
+// Random Movie Picker Logic
+const randomPickerBtn = document.getElementById('random-picker-btn');
+if (randomPickerBtn) {
+    randomPickerBtn.addEventListener('click', () => {
+        let unWatchedMovies = [];
+        
+        mcuData.forEach(phase => {
+            phase.items.forEach(item => {
+                if (!savedProgress[item.id] && item.meta !== "Upcoming" && item.year !== "TBA") {
+                    unWatchedMovies.push(item);
+                }
+            });
+        });
+
+        if (unWatchedMovies.length > 0) {
+            const randomMovie = unWatchedMovies[Math.floor(Math.random() * unWatchedMovies.length)];
+            trackerContainer.innerHTML = '';
+            renderSection("S.H.I.E.L.D. RANDOM DIRECTIVE", [randomMovie]);
+            fetchAdvancedData(randomMovie);
+        } else {
+            alert("Mission Complete: You have watched all available files in the Marvel Multiverse!");
+        }
+    });
+}
+
 // Initialize
 loadMovies();
+// --- MARVEL STUDIOS LOGO CLICK (DEEP LORE MODAL) ---
+const marvelLogoBtn = document.getElementById('marvel-logo-btn');
+const marvelInfoModal = document.getElementById('marvel-info-modal');
+const closeMarvelInfo = document.getElementById('close-marvel-info');
+const marvelInfoBody = document.getElementById('marvel-info-body');
+
+const marvelHistoryText = `
+    <p><strong>Marvel Studios, LLC</strong> is the cornerstone of modern superhero cinema. Originally operating as Marvel Films, the studio was revolutionized under the visionary leadership of President <strong>Kevin Feige</strong>.</p>
+    <br>
+    <p style="color: var(--marvel-red); font-weight: bold;">THE INFINITY SAGA (Phases 1-3)</p>
+    <p>Beginning in 2008 with <em>Iron Man</em>, the studio executed a cinematic experiment never before attempted: a heavily interconnected shared universe. Over 11 years, heroes like Captain America, Thor, and Black Panther were introduced, culminating in the monumental cinematic event <em>Avengers: Endgame</em>, which shattered global box office records.</p>
+    <br>
+    <p style="color: var(--marvel-red); font-weight: bold;">THE MULTIVERSE SAGA (Phases 4-6)</p>
+    <p>Following the defeat of Thanos, the universe expanded into the Multiverse. Integrating high-budget Disney+ series like <em>Loki</em> and <em>WandaVision</em>, the studio opened the doors to alternate realities. This bold era brings legacy characters from Fox's Mutant Saga and Sony's Spider-Verse into the fold, building toward the ultimate crossover event: <em>Avengers: Secret Wars</em>.</p>
+    <br>
+    <p style="color: var(--marvel-red); font-weight: bold;">S.H.I.E.L.D. CLASSIFIED DIRECTIVE</p>
+    <p>This localized database terminal tracks completion status across timelines. You are authorized to access project trailers, deep-lore comic origins, and global analytics. <em>"There was an idea... to bring together a group of remarkable people, to see if they could become something more."</em></p>
+`;
+
+if (marvelLogoBtn) {
+    marvelLogoBtn.addEventListener('click', () => {
+        marvelInfoBody.innerHTML = marvelHistoryText;
+        marvelInfoModal.style.display = 'flex';
+    });
+}
+
+if (closeMarvelInfo) {
+    closeMarvelInfo.addEventListener('click', () => {
+        marvelInfoModal.style.display = 'none';
+    });
+}
